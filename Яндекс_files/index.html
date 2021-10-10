@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<!-- saved from url=(1245)https://storage.mds.yandex.net/get-canvas-html5/1003119/a62d4c60-dba8-4be7-9d6a-d8cec0cf7f3b/index.html?link1=https%3A%2F%2Fan.yandex.ru%2Fcount%2FWpCejI_zO0u3JHa0z2iOQgIBJ482OGK03WGnMRzYOG00000uigLIG0n80c2C66W4SCBEtFB63O01b_Zu0uW1yD6W3P01d9FYbTE0W802c06Sa-ALKx01iB6Oh0Yu0UhHx_eYm07k0TW1lhdxdG7W0S21_9e1w07Y0lW1seh0kmNm0fVLuRG7ZWE81PaTa0MP7R05jWUu1RO7m0MP7SW5jWVG1RO7u0Lsgxhn6PKfe4wf1vUpg0jiXSrIi0U0W90ik0UGCe30a846u0ZWtGBm2U0M-0de0e0A2CbIy8EVbxC003YVFGJzpUWBcHtm2mQ83DgAthu1w0oN0fWDm8J1W8Y023-hzSRFqRAAq4wW3f_N0vVdagl1hU7cKe0Gtvgc7uWGpwYDYuo01D0Gx8xW4UBtn0Fe4V-GyFdbuiJ7iG7f4afQg1aCKCa0y18CZw7dlv2Mz8yMu1Es1_WJ2e0K8OWKXlJdaAdupu7F0Q0KjWUe59dGi-YA1kWKZ0BG5T2pw8e6s1N1YlRieu-y_6Fmg1Re1yaMq1RQYjw-0O4Nc1U9mjSig1S9k1S4m1Us4jWNm8Gzw1S3e1W8i1ZyvugB1hWO1D0O8UWO0VWOYDtNx97siwyJW1c96KQT1G000000a1a1e1cg0x0Pk1dI6H9vOM9pNtDbSdPbSYzoDJSpBJFW6GFe6O320_0PWC83WHh__wUc56OrWP0QW0IO6lpmY0Am6hkouUoAwFByhm7A6YH1DJOpDqL2H2qsH44vBJH3DpWjGJL3E2r4C4GtDaH3H3H1GqBr6W4000226nqnDZCpE3OnD3OrBZ0oC3KsBZWoDpapBZGuC38tDvWRm8Gzi1jak1i5qXiaCaP4GpSpE3CjCaD1DIqqC48pBK56GJ4jH38oGpT6C4GoCq8nWXmDQtKnEayoOdTsCdXKD-aS0F0_W1t_VvaT0F0_g1u18G10492w19eyxWhOO7kusg8RogOXilu8n6NB1T3gvMGpbmMgWtmpXqDmtbdMo4NCpFFCRDfw5JvU2QuWNol2ehKQZT4u9W2lkwulQ-1cbLkmlFdsJ01BUpQN53xqOG8nc0aS-5eZX1a0~1 -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"> 
+  <!--<base target="_blank">--><base href="." target="_blank"> 
+  <script>function CYandexHTML5BannerApi(){var getUrlParam=function(name){name=name.replace(/[\[]/,"\\[").replace(/[\]]/,"\\]");var regex=new RegExp("[\\?&]"+name+"=([^&#]*)"),results=regex.exec(location.search);return results==null?"":decodeURIComponent(results[1].replace(/\+/g," "))};this.getClickURLNum=function(number){if(!number){number=1}var name="link"+number;return getUrlParam(name)}}var yandexHTML5BannerApi=new CYandexHTML5BannerApi();</script>
+   
+  <meta name="authoring-tool" content="Adobe_Animate_CC"> 
+  <meta name="ad.size" content="width=1456,height=180"> 
+  <title>index</title> 
+  <!-- write your code here --> 
+  <style>
+  #animation_container {
+	position:absolute;
+	margin:auto;
+	left:0;right:0;
+	top:0;bottom:0;
+  }
+</style> 
+  <script src="./066740ff-8919-4f6f-805c-9548aa69f2e4.js.Без названия"></script> 
+  <script src="./index.js.Без названия"></script> 
+  <script>
+var canvas, stage, exportRoot, anim_container, dom_overlay_container, fnStartAnimation;
+function init() {
+	canvas = document.getElementById("canvas");
+	anim_container = document.getElementById("animation_container");
+	dom_overlay_container = document.getElementById("dom_overlay_container");
+	var comp=AdobeAn.getComposition("86597AF84E424AF8973E2784530C53F8");
+	var lib=comp.getLibrary();
+	var loader = new createjs.LoadQueue(false);
+	loader.addEventListener("fileload", function(evt){handleFileLoad(evt,comp)});
+	loader.addEventListener("complete", function(evt){handleComplete(evt,comp)});
+	var lib=comp.getLibrary();
+	loader.loadManifest(lib.properties.manifest);
+}
+function handleFileLoad(evt, comp) {
+	var images=comp.getImages();	
+	if (evt && (evt.item.type == "image")) { images[evt.item.id] = evt.result; }	
+}
+function handleComplete(evt,comp) {
+	//This function is always called, irrespective of the content. You can use the variable "stage" after it is created in token create_stage.
+	var lib=comp.getLibrary();
+	var ss=comp.getSpriteSheet();
+	var queue = evt.target;
+	var ssMetadata = lib.ssMetadata;
+	for(i=0; i<ssMetadata.length; i++) {
+		ss[ssMetadata[i].name] = new createjs.SpriteSheet( {"images": [queue.getResult(ssMetadata[i].name)], "frames": ssMetadata[i].frames} )
+	}
+	exportRoot = new lib.index();
+	stage = new lib.Stage(canvas);	
+	//Registers the "tick" event listener.
+	fnStartAnimation = function() {
+		stage.addChild(exportRoot);
+		createjs.Ticker.setFPS(lib.properties.fps);
+		createjs.Ticker.addEventListener("tick", stage);
+	}	    
+	//Code to support hidpi screens and responsive scaling.
+	AdobeAn.makeResponsive(false,'both',false,1,[canvas,anim_container,dom_overlay_container]);	
+	AdobeAn.compositionLoaded(lib.properties.id);
+	fnStartAnimation();
+}
+</script> 
+  <!-- write your code here --> 
+ </head> 
+ <body onload="init();" style="margin:0px;" marginwidth="0" marginheight="0"> 
+  <a id="click_area" href="https://an.yandex.ru/count/WpCejI_zO0u3JHa0z2iOQgIBJ482OGK03WGnMRzYOG00000uigLIG0n80c2C66W4SCBEtFB63O01b_Zu0uW1yD6W3P01d9FYbTE0W802c06Sa-ALKx01iB6Oh0Yu0UhHx_eYm07k0TW1lhdxdG7W0S21_9e1w07Y0lW1seh0kmNm0fVLuRG7ZWE81PaTa0MP7R05jWUu1RO7m0MP7SW5jWVG1RO7u0Lsgxhn6PKfe4wf1vUpg0jiXSrIi0U0W90ik0UGCe30a846u0ZWtGBm2U0M-0de0e0A2CbIy8EVbxC003YVFGJzpUWBcHtm2mQ83DgAthu1w0oN0fWDm8J1W8Y023-hzSRFqRAAq4wW3f_N0vVdagl1hU7cKe0Gtvgc7uWGpwYDYuo01D0Gx8xW4UBtn0Fe4V-GyFdbuiJ7iG7f4afQg1aCKCa0y18CZw7dlv2Mz8yMu1Es1_WJ2e0K8OWKXlJdaAdupu7F0Q0KjWUe59dGi-YA1kWKZ0BG5T2pw8e6s1N1YlRieu-y_6Fmg1Re1yaMq1RQYjw-0O4Nc1U9mjSig1S9k1S4m1Us4jWNm8Gzw1S3e1W8i1ZyvugB1hWO1D0O8UWO0VWOYDtNx97siwyJW1c96KQT1G000000a1a1e1cg0x0Pk1dI6H9vOM9pNtDbSdPbSYzoDJSpBJFW6GFe6O320_0PWC83WHh__wUc56OrWP0QW0IO6lpmY0Am6hkouUoAwFByhm7A6YH1DJOpDqL2H2qsH44vBJH3DpWjGJL3E2r4C4GtDaH3H3H1GqBr6W4000226nqnDZCpE3OnD3OrBZ0oC3KsBZWoDpapBZGuC38tDvWRm8Gzi1jak1i5qXiaCaP4GpSpE3CjCaD1DIqqC48pBK56GJ4jH38oGpT6C4GoCq8nWXmDQtKnEayoOdTsCdXKD-aS0F0_W1t_VvaT0F0_g1u18G10492w19eyxWhOO7kusg8RogOXilu8n6NB1T3gvMGpbmMgWtmpXqDmtbdMo4NCpFFCRDfw5JvU2QuWNol2ehKQZT4u9W2lkwulQ-1cbLkmlFdsJ01BUpQN53xqOG8nc0aS-5eZX1a0~1" target="_blank"> 
+   <div id="animation_container" style="background-color:rgba(255, 255, 255, 1.00); width:1456px; height:180px"> 
+    <canvas id="canvas" width="1820" height="225" style="position: absolute; display: block; background-color: rgb(255, 255, 255); width: 1456px; height: 180px;"></canvas> 
+    <div id="dom_overlay_container" style="pointer-events:none; overflow:hidden; width:1456px; height:180px; position: absolute; left: 0px; top: 0px; display: block;"> 
+    </div> 
+   </div></a> 
+  <script> 
+   document.getElementById("click_area").href = yandexHTML5BannerApi.getClickURLNum(1); 
+</script>  
+ 
+</body></html>
